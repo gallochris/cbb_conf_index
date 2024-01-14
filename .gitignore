@@ -39,6 +39,9 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
+# R login creds
+R/cbbdata_login.R
+
 # pkgdown site
 docs/
 
