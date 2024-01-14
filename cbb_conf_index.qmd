@@ -15,7 +15,8 @@ source(here::here("R/conf_diff_data.R"))
 
 source(here::here("R/conf_net_summary.R"))
 
-source(here::here("R/conf_head_to_head.R"))
+# Not including head-to-head charts right now
+# source(here::here("R/conf_head_to_head.R"))
 ```
 
 ::: panel-tabset

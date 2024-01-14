@@ -50,3 +50,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+/.quarto/
+
+# DS Store
+.DS_Store
