@@ -8,13 +8,12 @@ conf_data <-
   cbbdata::cbd_torvik_game_stats(year = 2024, type = "conf")
 
 # Add today's date to get the latest NET numbers - it's updated around 9 am EST each day
-today_date <- format(Sys.Date(), "%Y-%m-%d")
-
-# Load NET rankings 
-# We could use CSV from GitHub: readr::read_csv(
+# This isn't needed unless we load from the CSV: readr::read_csv(
 # "https://raw.githubusercontent.com/andreweatherman/NCAA_NET_RANKINGS/main/complete_data.csv"
 # ) 
-# Both require updates to teams for specific conferences 
+# today_date <- format(Sys.Date(), "%Y-%m-%d")
+
+# Load NET rankings from full metrics 
 net_up <-
   cbbdata::cbd_all_metrics() |> 
   dplyr::mutate(
@@ -36,7 +35,7 @@ net_up <-
   ) |>
   dplyr::mutate(conf = conf_name_lookup(conf))
 
-# Isolate only the NET rankings for today and conference data 
+# Isolate only the NET rankings and conference data 
 team_net <- net_up |>
   dplyr::select(team, net = net_rank, conf)
 
@@ -44,7 +43,7 @@ team_net <- net_up |>
 conf_records <- conf_data |>
   cbbdata::cbd_add_net_quad() |>
   dplyr::mutate(delta = abs(pts_scored - opp_pts)) |>
-  dplyr::select(-net,-conf) |>
+  dplyr::select(-net,-conf) |> # drop these for easier joining 
   dplyr::left_join(team_net, by = "team") |>
   dplyr::group_by(conf) |>
   dplyr::summarise(

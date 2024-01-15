@@ -36,6 +36,7 @@ conf_margin <- conf_data |>
   cbbplotR::gt_cbb_teams(team, include_name = FALSE)
 
 # Add a function to fetch the differentials and records by conference 
+# Within the function build the table 
 conf_deltas <- function(conf) {
   conf_margin |>
     dplyr::filter(conf == {
@@ -110,4 +111,5 @@ conf_deltas <- function(conf) {
   conf_table
 }
 
+# Cache the table with the function for filtering 
 cached_conf_deltas <- memoise::memoise(conf_deltas)
