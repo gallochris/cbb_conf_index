@@ -37,9 +37,17 @@ hth_recs <- non_con_data |>
   dplyr::select(conf, opp_conf, games, overall_rec, win_pct, quad1, quad2,
                 quad3, quad4) 
 
+# Save it as a RDS file to see if we can speed it up 
+# saveRDS(hth_recs, "hth_recs.RDS")
+
+# hth_saved <- readRDS("hth_recs.RDS")  
+
+
 # Add a function to fetch the h2h records by conference 
 hth_conf_records <- function(conf) {
-  hth_recs |>
+
+#  hth_saved |>
+    hth_recs |> 
     dplyr::filter(conf == {
       {
         conf
@@ -108,7 +116,7 @@ cached_hth_records <- memoise::memoise(hth_conf_records)
 #      selectInput(
 #        'conf',
 #        'Select a conference',
-#        choices = c(as.character(unique(hth_recs$conf))),
+#        choices = c(as.character(unique(hth_saved$conf))),
 #        selected = "ACC"
 #      )
 #    )

@@ -10,11 +10,13 @@ conf_data <-
 # Add today's date to get the latest NET numbers - it's updated around 9 am EST each day
 today_date <- format(Sys.Date(), "%Y-%m-%d")
 
-# Load CSV from GitHub and update conferences 
+# Load NET rankings 
+# We could use CSV from GitHub: readr::read_csv(
+# "https://raw.githubusercontent.com/andreweatherman/NCAA_NET_RANKINGS/main/complete_data.csv"
+# ) 
+# Both require updates to teams for specific conferences 
 net_up <-
-  readr::read_csv(
-    "https://raw.githubusercontent.com/andreweatherman/NCAA_NET_RANKINGS/main/complete_data.csv"
-  ) |>
+  cbbdata::cbd_all_metrics() |> 
   dplyr::mutate(
     conf = dplyr::case_match(
       team,
@@ -36,8 +38,7 @@ net_up <-
 
 # Isolate only the NET rankings for today and conference data 
 team_net <- net_up |>
-  dplyr::filter(date == today_date) |>
-  dplyr::select(team, net, conf)
+  dplyr::select(team, net = net_rank, conf)
 
 # Create the Conference records and quad data 
 conf_records <- conf_data |>

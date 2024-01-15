@@ -80,7 +80,7 @@ The standings show win/loss records and point differentials by location (home or
 
 The intention is to show the raw differential only, so you can quickly grasp the performance of certain teams in conference play only. 
 
-If you're looking for adjusted metrics or standngs, you can check out other data sources like [barttorvik.com](https://barttorvik.com/#) or [kenpom.com](https://kenpom.com/) or [John Gasaway](https://johngasaway.com/).
+If you're looking for adjusted metrics or standings, you can check out other data sources like [barttorvik.com](https://barttorvik.com/#) or [kenpom.com](https://kenpom.com/) or [John Gasaway](https://johngasaway.com/).
 
 **NET Summary**
 
@@ -108,4 +108,5 @@ output$conftable <- gt::render_gt({
 output$by_conftable <- gt::render_gt({
     by_conf_table
 })
+
 ```
