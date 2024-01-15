@@ -4,6 +4,9 @@
 
 Welcome to the college basketball conference index. This project was built by me, [Chris Gallo](https://hellogallo.com). All code is written in R.  
 
+The app is hosted via shinyapps.io, and it can be found here: 
+[https://blessyourchart.shinyapps.io/cbb_conf_index/](https://blessyourchart.shinyapps.io/cbb_conf_index/)
+
 The goal of this project is to share tables of data about the 2023-24 men's college basketball season. This project is built on top of [cbbdata](https://github.com/andreweatherman/cbbdata) and [cbbplotR](https://cbbplotr.aweatherman.com/index.html) both developed by [Andrew Weatherman](https://www.aweatherman.com/). 
 
 There are two types of tables that surface the following data: 
