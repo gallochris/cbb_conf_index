@@ -61,7 +61,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Standings</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">NET Summary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">About</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Standings</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Conference Summary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Non-Conference Summary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">About</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
@@ -73,38 +73,38 @@ ul.task-list li input[type="checkbox"] {
 <div class="form-group shiny-input-container">
 <label class="control-label" id="conf-label" for="conf">Select a conference</label>
 <div>
-<select id="conf" class="shiny-input-select"><option value="WAC">WAC</option>
-<option value="Horizon">Horizon</option>
-<option value="CAA">CAA</option>
-<option value="Big West">Big West</option>
+<select id="conf" class="shiny-input-select"><option value="Horizon">Horizon</option>
 <option value="Missouri Valley">Missouri Valley</option>
 <option value="ACC" selected="">ACC</option>
+<option value="WAC">WAC</option>
+<option value="Big East">Big East</option>
+<option value="CAA">CAA</option>
+<option value="Big West">Big West</option>
+<option value="Southern">Southern</option>
+<option value="Mid-American">Mid-American</option>
 <option value="Big Ten">Big Ten</option>
 <option value="Sun Belt">Sun Belt</option>
-<option value="Big East">Big East</option>
+<option value="Patriot">Patriot</option>
 <option value="Metro Atlantic">Metro Atlantic</option>
 <option value="Ohio Valley">Ohio Valley</option>
 <option value="Pac-12">Pac-12</option>
 <option value="WCC">WCC</option>
-<option value="Southern">Southern</option>
-<option value="Mid-American">Mid-American</option>
-<option value="Mountain West">Mountain West</option>
+<option value="SEC">SEC</option>
 <option value="Atlantic Sun">Atlantic Sun</option>
 <option value="American">American</option>
-<option value="Patriot">Patriot</option>
-<option value="Big South">Big South</option>
-<option value="Big Sky">Big Sky</option>
-<option value="SEC">SEC</option>
-<option value="Summit">Summit</option>
+<option value="Mountain West">Mountain West</option>
 <option value="Southland">Southland</option>
-<option value="America East">America East</option>
-<option value="SWAC">SWAC</option>
-<option value="Northeast">Northeast</option>
-<option value="Big 12">Big 12</option>
 <option value="Atlantic 10">Atlantic 10</option>
+<option value="Big South">Big South</option>
+<option value="SWAC">SWAC</option>
+<option value="Big Sky">Big Sky</option>
+<option value="Summit">Summit</option>
+<option value="Big 12">Big 12</option>
+<option value="America East">America East</option>
+<option value="Northeast">Northeast</option>
 <option value="CUSA">CUSA</option>
-<option value="MEAC">MEAC</option>
-<option value="Ivy">Ivy</option></select>
+<option value="Ivy">Ivy</option>
+<option value="MEAC">MEAC</option></select>
 <script type="application/json" data-for="conf" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
 </div>
 </div>
@@ -137,6 +137,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-4"></div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="non_con_net_sum_table" class="shiny-html-output"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>Welcome to the college basketball conference index. This project was built by me, <a href="https://hellogallo.com">Chris Gallo</a>. All code is written in R.</p>
 <p>The goal of this project is to share tables of data about the 2023-24 men’s college basketball season. This project is built on top of <a href="https://github.com/andreweatherman/cbbdata">cbbdata</a> and <a href="https://cbbplotr.aweatherman.com/index.html">cbbplotR</a> both developed by <a href="https://www.aweatherman.com/">Andrew Weatherman</a>.</p>
 <p>There are two types of tables that surface the following data:</p>
@@ -148,9 +165,12 @@ ul.task-list li input[type="checkbox"] {
 <p>The standings show win/loss records and point differentials by location (home or away). You can filter by any conference to see the specific data.</p>
 <p>The intention is to show the raw point differential in leage play only, so you can quickly grasp the performance of certain teams in conference play only.</p>
 <p>If you’re looking for adjusted efficiency margin, you can check out other data sources like <a href="https://barttorvik.com/#">barttorvik.com</a> or <a href="https://kenpom.com/">kenpom.com</a> or <a href="https://johngasaway.com/">John Gasaway</a>.</p>
-<p><strong>NET Summary</strong></p>
-<p>The NET Summary table is a static table that surfaces the home win percentage in conference play, the average NET ranking of teams in a single conference, and the percentage of conference games played in <a href="https://www.ncaa.com/news/basketball-men/article/2022-12-05/college-basketballs-net-rankings-explained">each quadrant</a>.</p>
-<p>This can be used as a gauge of quadrant opportunities in conference play. For example, ~60 percent of Big 12 games are in the first quadrant.</p>
+<p><strong>Conference Play NET Summary</strong></p>
+<p>The Conference Play NET Summary table is a static table that surfaces the home win percentage in <strong>conference</strong> play, the average NET ranking of teams in a single conference, and the percentage of <strong>conference</strong> games played in <a href="https://www.ncaa.com/news/basketball-men/article/2022-12-05/college-basketballs-net-rankings-explained">each quadrant</a>.</p>
+<p>This can be used as a gauge of quadrant opportunities in <strong>conference</strong> play only. For example, ~66 percent of Big 12 games are in the first quadrant.</p>
+<p><strong>Non-Conference Play NET Summary</strong></p>
+<p>The Non-Conference Play NET Summary table is a static table that surfaces the average NET ranking of teams in a single conference, the quadrant records by conference in <strong>non-conference</strong> play only, and the percentage of <strong>non-conference</strong> games played in <a href="https://www.ncaa.com/news/basketball-men/article/2022-12-05/college-basketballs-net-rankings-explained">each quadrant</a>.</p>
+<p>This can be used to understand quadrant opportunities in <strong>non-conference</strong> play. For example, ~55 percent of Big 12 non-conference games are in the fourth quadrant.</p>
 <p><strong>Data updates</strong></p>
 <p>The data is updated periodically throughout the day.</p>
 <p><strong>Thank you</strong></p>
@@ -169,6 +189,8 @@ source(here::here("R/conf_diff_data.R"))
 
 source(here::here("R/conf_net_summary.R"))
 
+source(here::here("R/non_con_net_summary.R"))
+
 # Not including head-to-head charts right now
 # source(here::here("R/conf_head_to_head.R"))
 </script>
@@ -181,6 +203,10 @@ output$conf_diff_table <- gt::render_gt({
 
 output$net_sum_table <- gt::render_gt({
     by_conf_table
+})
+
+output$non_con_net_sum_table <- gt::render_gt({
+    by_non_con_table
 })
 
 </script>
@@ -214,7 +240,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 </p>
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="dependencies">
-{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["selectize"]},{"type":"character","attributes":{},"value":["0.12.4"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/selectize"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/selectize.min.js","accessibility/js/selectize-plugin-a11y.min.js"]},{"type":"character","attributes":{},"value":["css/selectize.bootstrap3.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.4.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/bootstrap"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","accessibility/js/bootstrap-accessibility.min.js"]},{"type":"character","attributes":{},"value":["css/bootstrap.min.css","accessibility/css/bootstrap-accessibility.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.4.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/bootstrap"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","accessibility/js/bootstrap-accessibility.min.js"]},{"type":"character","attributes":{},"value":["css/bootstrap.min.css","accessibility/css/bootstrap-accessibility.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]}]}
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["selectize"]},{"type":"character","attributes":{},"value":["0.12.4"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/selectize"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/selectize.min.js","accessibility/js/selectize-plugin-a11y.min.js"]},{"type":"character","attributes":{},"value":["css/selectize.bootstrap3.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.4.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/bootstrap"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","accessibility/js/bootstrap-accessibility.min.js"]},{"type":"character","attributes":{},"value":["css/bootstrap.min.css","accessibility/css/bootstrap-accessibility.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.4.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/bootstrap"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","accessibility/js/bootstrap-accessibility.min.js"]},{"type":"character","attributes":{},"value":["css/bootstrap.min.css","accessibility/css/bootstrap-accessibility.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.4.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/bootstrap"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","accessibility/js/bootstrap-accessibility.min.js"]},{"type":"character","attributes":{},"value":["css/bootstrap.min.css","accessibility/css/bootstrap-accessibility.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.7.5.1"]}]}]}
 </script>
 <!--/html_preserve-->
 <!--html_preserve-->

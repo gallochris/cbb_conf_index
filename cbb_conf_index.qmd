@@ -15,6 +15,8 @@ source(here::here("R/conf_diff_data.R"))
 
 source(here::here("R/conf_net_summary.R"))
 
+source(here::here("R/non_con_net_summary.R"))
+
 # Not including head-to-head charts right now
 # source(here::here("R/conf_head_to_head.R"))
 ```
@@ -43,7 +45,7 @@ fluidPage(
 )
 ```
 
-### NET Summary
+### Conference Summary
 
 ```{r net-summary}
 fluidPage(
@@ -61,6 +63,24 @@ fluidPage(
 )
 ```
 
+
+### Non-Conference Summary
+
+```{r non-con-net-summary}
+fluidPage(
+  fluidRow(
+    column(
+      4
+      )
+    ),
+  fluidRow(
+    column(
+      12,
+      gt::gt_output("non_con_net_sum_table")
+    )
+  )
+)
+```
 
 ### About
 
@@ -81,11 +101,18 @@ The intention is to show the raw point differential in leage play only, so you c
 
 If you're looking for adjusted efficiency margin, you can check out other data sources like [barttorvik.com](https://barttorvik.com/#) or [kenpom.com](https://kenpom.com/) or [John Gasaway](https://johngasaway.com/).
 
-**NET Summary**
+**Conference Play NET Summary**
 
-The NET Summary table is a static table that surfaces the home win percentage in conference play, the average NET ranking of teams in a single conference, and the percentage of conference games played in [each quadrant](https://www.ncaa.com/news/basketball-men/article/2022-12-05/college-basketballs-net-rankings-explained). 
+The Conference Play NET Summary table is a static table that surfaces the home win percentage in **conference** play, the average NET ranking of teams in a single conference, and the percentage of **conference** games played in [each quadrant](https://www.ncaa.com/news/basketball-men/article/2022-12-05/college-basketballs-net-rankings-explained). 
 
-This can be used as a gauge of quadrant opportunities in conference play. For example, ~60 percent of Big 12 games are in the first quadrant. 
+This can be used as a gauge of quadrant opportunities in **conference** play only. For example, ~66 percent of Big 12 games are in the first quadrant. 
+
+**Non-Conference Play NET Summary**
+
+The Non-Conference Play NET Summary table is a static table that surfaces the average NET ranking of teams in a single conference, the quadrant records by conference in **non-conference** play only, and the percentage of **non-conference** games played in [each quadrant](https://www.ncaa.com/news/basketball-men/article/2022-12-05/college-basketballs-net-rankings-explained). 
+
+This can be used to understand quadrant opportunities in **non-conference** play. For example, ~55 percent of Big 12 non-conference games are in the fourth quadrant. 
+
 
 **Data updates**
 
@@ -105,6 +132,10 @@ output$conf_diff_table <- gt::render_gt({
 
 output$net_sum_table <- gt::render_gt({
     by_conf_table
+})
+
+output$non_con_net_sum_table <- gt::render_gt({
+    by_non_con_table
 })
 
 ```
