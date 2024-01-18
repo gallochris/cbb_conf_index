@@ -48,7 +48,7 @@ conf_records <- conf_data |>
   dplyr::group_by(conf) |>
   dplyr::summarise(
     games_played = dplyr::n(),
-    avg_net = mean(net),
+    avg_net = mean(unique(net)),
     home_wins = sum(result == "W" & location == "H"),
     home_loss = sum(result == "L" & location == "H"),
     home_win_pct = (home_wins / (home_wins + home_loss)),
@@ -102,7 +102,7 @@ by_conf_records <- conf_records |>
     source_notes.font.size = gt::px(10),
     row.striping.background_color = '#EEEEEE',
     table.font.size = gt::px(12),
-    column_labels.text_transform = 'capitalize'
+    column_labels.text_transform = 'uppercase'
   ) |>
   gt::tab_style(style = list(gt::cell_borders(
     sides = c("left"),

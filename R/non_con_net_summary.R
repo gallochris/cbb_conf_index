@@ -41,13 +41,14 @@ team_net <- net_up |>
 
 # Create the Non-conference records and quad data 
 non_con_records <- non_con_data |>
+  dplyr::filter(conf != "ind") |> 
   cbbdata::cbd_add_net_quad() |>
   dplyr::select(-net,-conf) |> # drop these for easier joining 
   dplyr::left_join(team_net, by = "team") |>
   dplyr::group_by(conf) |>
   dplyr::summarise(
     games_played = dplyr::n(),
-    avg_net = mean(net),
+    avg_net = mean(unique(net)),
     q1_rec = paste0(sum(quad == "Quadrant 1" & result == "W"), "-",
                     sum(quad == "Quadrant 1" & result == "L")),
     q1 = sum(quad == "Quadrant 1") / games_played,
@@ -113,7 +114,7 @@ by__non_con_records <- non_con_records |>
     source_notes.font.size = gt::px(10),
     row.striping.background_color = '#EEEEEE',
     table.font.size = gt::px(12),
-    column_labels.text_transform = 'capitalize'
+    column_labels.text_transform = 'uppercase'
   ) |>
   gt::tab_style(style = list(gt::cell_borders(
     sides = c("left"),

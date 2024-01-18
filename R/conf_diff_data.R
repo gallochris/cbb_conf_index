@@ -7,6 +7,13 @@ source(here::here("R/utils.R"))
 conf_data <-
   cbbdata::cbd_torvik_game_stats(year = 2024, type = "conf")
 
+# Add NET rankings
+net_up <-
+  cbbdata::cbd_all_metrics() 
+
+team_net <- net_up |>
+  dplyr::select(team, net = net_rank)
+
 # Retrieve only the conference data for teams for joining later
 only_confs <- conf_data |>
   dplyr::select(conf, team_name = team) |>
@@ -33,6 +40,8 @@ conf_margin <- conf_data |>
   dplyr::relocate(team_name, .before = wins) |>
   dplyr::left_join(only_confs, by = "team_name") |>
   dplyr::relocate(conf, .before = team)  |>
+  dplyr::left_join(team_net, by ="team") |> 
+  dplyr::relocate(net, .before = wins)  |>
   cbbplotR::gt_cbb_teams(team, include_name = FALSE)
 
 # Add a function to fetch the differentials and records by conference 
@@ -52,6 +61,7 @@ conf_deltas <- function(conf) {
       row_number = "",
       team_name = "",
       team = "",
+      net = "NET",
       delta = "+/-",
       wins = "W",
       loss = "L",
@@ -78,6 +88,7 @@ conf_deltas <- function(conf) {
     gtExtras::gt_theme_dot_matrix() |>
     gt::cols_align(align = "left", columns = "team_name") |>
     gtExtras::gt_hulk_col_numeric(columns = c(delta, home_delta, away_delta)) |>
+    gtExtras::gt_hulk_col_numeric(columns = c(net), reverse = TRUE) |>
     gt::tab_header(title = "2023-24 Conference Standings",
                    subtitle = "Win/loss and point differential by location in conference play only.") |>
     gt::tab_source_note(source_note = "Bless your chart | data: cbbdata + cbbplotR") |>
@@ -85,7 +96,7 @@ conf_deltas <- function(conf) {
       source_notes.font.size = gt::px(10),
       row.striping.background_color = '#EEEEEE',
       table.font.size = gt::px(12),
-      column_labels.text_transform = 'capitalize'
+      column_labels.text_transform = 'uppercase'
     ) |>
     gt::tab_style(style = list(
       gt::cell_borders(

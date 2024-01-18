@@ -88,16 +88,17 @@ Welcome to the college basketball conference index. This project was built by me
 
 The goal of this project is to share tables of data about the 2023-24 men's college basketball season. This project is built on top of [cbbdata](https://github.com/andreweatherman/cbbdata) and [cbbplotR](https://cbbplotr.aweatherman.com/index.html) both developed by [Andrew Weatherman](https://www.aweatherman.com/). 
 
-There are two types of tables that surface the following data: 
+There are three types of tables that surface the following data: 
 
 - Conference standings and point differentials by location
-- NET summary by conference 
+- Conference play NET summary
+- Non-conference play NET summary
 
 **Standings**
 
 The standings show win/loss records and point differentials by location (home or away). You can filter by any conference to see the specific data. 
 
-The intention is to show the raw point differential in leage play only, so you can quickly grasp the performance of certain teams in conference play only. 
+The intention is to show the raw point differential in leage play only, so you can quickly grasp the performance of certain teams in conference play only. It also includes the current NET rating or at the latest date. 
 
 If you're looking for adjusted efficiency margin, you can check out other data sources like [barttorvik.com](https://barttorvik.com/#) or [kenpom.com](https://kenpom.com/) or [John Gasaway](https://johngasaway.com/).
 
