@@ -47,6 +47,11 @@ conf_margin <- conf_data |>
 # Add a function to fetch the differentials and records by conference 
 # Within the function build the table 
 conf_deltas <- function(conf) {
+
+  # Set the title of the plot to include the conference name 
+  table_title <-
+    paste0(conf, ": 2023-24 Conference Standings")
+  
   conf_margin |>
     dplyr::filter(conf == {
       {
@@ -89,7 +94,7 @@ conf_deltas <- function(conf) {
     gt::cols_align(align = "left", columns = "team_name") |>
     gtExtras::gt_hulk_col_numeric(columns = c(delta, home_delta, away_delta)) |>
     gtExtras::gt_hulk_col_numeric(columns = c(net), reverse = TRUE) |>
-    gt::tab_header(title = "2023-24 Conference Standings",
+    gt::tab_header(title = table_title,
                    subtitle = "Win/loss and point differential by location in conference play only.") |>
     gt::tab_source_note(source_note = "Bless your chart | data: cbbdata + cbbplotR") |>
     gt::tab_options (
