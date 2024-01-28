@@ -108,13 +108,14 @@ fluidPage(
 
 Welcome to the college basketball conference index. This project was built by me, [Chris Gallo](https://hellogallo.com). All code is written in R.  
 
-The goal of this project is to share tables of data about the 2023-24 men's college basketball season. This project is built on top of [cbbdata](https://github.com/andreweatherman/cbbdata) and [cbbplotR](https://cbbplotr.aweatherman.com/index.html) both developed by [Andrew Weatherman](https://www.aweatherman.com/). 
+The goal of this project is to surface metrics specific to conferences during the 2023-24 men's college basketball season. This project is built on top of [cbbdata](https://github.com/andreweatherman/cbbdata) and [cbbplotR](https://cbbplotr.aweatherman.com/index.html) both developed by [Andrew Weatherman](https://www.aweatherman.com/). 
 
-There are three types of tables that surface the following data: 
+There are four types of tables that surface the following data: 
 
 - Conference standings and point differentials by location
 - Conference play NET summary
 - Non-conference play NET summary
+- Head-to-head conference records
 
 **Standings**
 
