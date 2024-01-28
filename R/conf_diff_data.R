@@ -94,7 +94,7 @@ conf_deltas <- function(conf) {
     gtExtras::gt_theme_dot_matrix() |>
     gt::cols_align(align = "left", columns = "team_name") |>
     gtExtras::gt_hulk_col_numeric(columns = c(delta, home_delta, away_delta)) |>
-    gtExtras::gt_hulk_col_numeric(columns = c(wab), reverse = TRUE) |>
+    gtExtras::gt_hulk_col_numeric(columns = c(wab)) |>
     gt::tab_header(title = table_title,
                    subtitle = "Win/loss and point differential by location in conference play only.") |>
     gt::tab_source_note(source_note = "Bless your chart | data: cbbdata + cbbplotR") |>

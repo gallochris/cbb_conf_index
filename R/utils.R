@@ -25,6 +25,7 @@ conf_name_lookup <- function(conf_var) {
     "NEC" ~ "Northeast",
     "MAC" ~ "Mid-American",
     "MAAC" ~ "Metro Atlantic",
+    "ind" ~ "Independent",
     conf_var ~ conf_var
   )
 }

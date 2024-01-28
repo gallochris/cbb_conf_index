@@ -18,7 +18,7 @@ source(here::here("R/conf_net_summary.R"))
 source(here::here("R/non_con_net_summary.R"))
 
 # Not including head-to-head charts right now
-# source(here::here("R/conf_head_to_head.R"))
+ source(here::here("R/conf_head_to_head.R"))
 ```
 
 ::: panel-tabset
@@ -63,7 +63,6 @@ fluidPage(
 )
 ```
 
-
 ### Non-Conference Summary
 
 ```{r non-con-net-summary}
@@ -77,6 +76,29 @@ fluidPage(
     column(
       12,
       gt::gt_output("non_con_net_sum_table")
+    )
+  )
+)
+```
+
+### Head-to-Head
+```{r hth-records}
+fluidPage(
+  fluidRow(
+    column(
+      4,
+      selectInput(
+        'selected_conf',
+        'Select a conference',
+        choices = c(as.character(unique(hth_recs$conf))),
+        selected = "ACC"
+      )
+    )
+  ),
+  fluidRow(
+    column(
+      12,
+      gt::gt_output("hthtable")
     )
   )
 )
@@ -116,6 +138,13 @@ The Non-Conference Play NET Summary table is a static table that surfaces the av
 
 This can be used to understand quadrant opportunities in **non-conference** play. For example, ~55 percent of Big 12 non-conference games are in the fourth quadrant. 
 
+**Head-to-Head**
+
+This table provides the head-to-head conference records. For example, you can filter by a specific conference and see how teams from that conference performed against another conference. 
+
+The table surfaces the total number of games, the overall win/loss record, and the win/loss record by quadrant. This data can be noisy because it doesn't reveal which teams are part of those records. 
+
+You can corroborate the overall non-conference records using [WarrenNolan.com](https://www.warrennolan.com/basketball/2024/net-conference) data.
 
 **Data updates**
 
@@ -141,4 +170,64 @@ output$non_con_net_sum_table <- gt::render_gt({
     by_non_con_table
 })
 
+
+# Table is built using shiny reactive for performance reasons
+# This is loading directly from the index page right now, exploring
+# ways to clean this up in the future 
+hth_filter <- shiny::reactive({
+  hth_recs |> 
+    dplyr::filter(conf == input$selected_conf) |> 
+    dplyr::arrange(win_pct) |> 
+    gt::gt() |>
+    gt::cols_label(
+      conf = "Conference",
+      opp_conf = "Opponent Conference",
+      games = "Games",
+      overall_rec = "W-L",
+      win_pct = "Win %",
+      quad1 = "Q1",
+      quad2 = "Q2",
+      quad3 = "Q3", 
+      quad4 = "Q4"
+    ) |>
+    gt::tab_spanner(label = "Quadrant Record",
+                    columns = c(quad1, quad2, quad3, quad4)) |>
+    gt::fmt_percent(columns = c(win_pct), decimals = 1) |> 
+    gtExtras::gt_hulk_col_numeric(columns = c(win_pct)) |> 
+    gtExtras::gt_theme_dot_matrix() |>
+    gt::tab_header(title = "2023-24 Head-to-Head Conference Records",
+                   subtitle = "Win/loss and quadrant records against each conference") |>
+    gt::tab_source_note(source_note = "Bless your chart | data: cbbdata") |>
+    gt::tab_options (
+      source_notes.font.size = gt::px(10),
+      row.striping.background_color = '#EEEEEE',
+      table.font.size = gt::px(12),
+      column_labels.text_transform = 'uppercase'
+    ) |>
+    gt::tab_style(style = list(
+      gt::cell_borders(
+        sides = c("left"),
+        color = "#c1c1c1",
+        weight = gt::px(2)
+      )
+    ),
+    locations = list(gt::cells_body(
+      columns = c(
+        games, 
+        overall_rec,
+        win_pct,
+        quad1,
+        quad2,
+        quad3,
+        quad4
+      )
+    ))) -> hth_table
+  
+  hth_table
+})
+
+# Load the table
+output$hthtable <- gt::render_gt({
+  hth_filter()
+})
 ```
