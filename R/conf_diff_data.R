@@ -11,8 +11,8 @@ conf_data <-
 net_up <-
   cbbdata::cbd_all_metrics() 
 
-team_net <- net_up |>
-  dplyr::select(team, wab)
+# team_net <- net_up |>
+#  dplyr::select(team, wab)
 
 # Retrieve only the conference data for teams for joining later
 only_confs <- conf_data |>
@@ -40,8 +40,6 @@ conf_margin <- conf_data |>
   dplyr::relocate(team_name, .before = wins) |>
   dplyr::left_join(only_confs, by = "team_name") |>
   dplyr::relocate(conf, .before = team)  |>
-  dplyr::left_join(team_net, by ="team") |> 
-  dplyr::relocate(wab, .before = wins)  |>
   cbbplotR::gt_cbb_teams(team, include_name = FALSE)
 
 # Add a function to fetch the differentials and records by conference 
@@ -66,7 +64,6 @@ conf_deltas <- function(conf) {
       row_number = "",
       team_name = "",
       team = "",
-      wab = "WAB",
       delta = "+/-",
       wins = "W",
       loss = "L",
@@ -89,12 +86,12 @@ conf_deltas <- function(conf) {
         ifelse(x > 0, paste0("+", x), x)
       }
     ) |>
-    gt::fmt_number(columns = c(wab), decimals = 1) |> 
+    # gt::fmt_number(columns = c(wab), decimals = 1) |> 
     gt::cols_hide(columns = c(conf)) |>
     gtExtras::gt_theme_dot_matrix() |>
     gt::cols_align(align = "left", columns = "team_name") |>
     gtExtras::gt_hulk_col_numeric(columns = c(delta, home_delta, away_delta)) |>
-    gtExtras::gt_hulk_col_numeric(columns = c(wab)) |>
+    # gtExtras::gt_hulk_col_numeric(columns = c(wab)) |>
     gt::tab_header(title = table_title,
                    subtitle = "Win/loss and point differential by location in conference play only.") |>
     gt::tab_source_note(source_note = "Bless your chart | data: cbbdata + cbbplotR") |>
